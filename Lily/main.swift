@@ -18,7 +18,7 @@ class Value {
 
   static var nextDefaultName = 1
 
-  init(ty: Ty, definingOperation: Operation, name: String?) {
+  init(ty: Ty, definingOperation: Operation, name: String? = nil) {
     self.ty = ty
     self.definingOperation = definingOperation
 
@@ -70,7 +70,10 @@ class Operation {
     self.regions = []
   }
 
-  func print() {
+  func print(terminator: String = "\n") {
+    defer {
+      Swift.print(terminator, terminator: "")
+    }
     assert(results.count <= 1)
 
     if !results.isEmpty {
@@ -111,14 +114,17 @@ class Operation {
 
     let bb = regions[0].basicBlocks[0]
 
-    for operation in bb.operations {
+    for (index, operation) in bb.operations.enumerated() {
       Swift.print("  ", terminator: "")
-      operation.print()
+      operation.print(terminator: "")
+
+      if index + 1 < bb.operations.count {
+        Swift.print("")
+      }
     }
 
     Swift.print("")
     Swift.print("}")
-
   }
 }
 
@@ -161,6 +167,22 @@ class ConstantOp: Operation {
 
     results.append(
       Value(ty: value.getTy(), definingOperation: self, name: name))
+  }
+}
+
+class AddOp: Operation {
+  override func getName() -> String {
+    return "add"
+  }
+
+  init(lhs: Value, rhs: Value) {
+    super.init()
+
+    assert(lhs.ty === rhs.ty)
+
+    operands.append(lhs)
+    operands.append(rhs)
+    results.append(Value(ty: lhs.ty, definingOperation: self))
   }
 }
 
@@ -211,7 +233,10 @@ class StringAttribute: Attribute {
 let main = Function(name: "main")
 let bb = main.getBody().appendNewBasicBlock()
 
-let xEqualsFour = ConstantOp(value: I64Attribute(value: 44))
-main.appendOp(xEqualsFour)
+let lhs = ConstantOp(value: I64Attribute(value: 44))
+main.appendOp(lhs)
+let rhs = ConstantOp(value: I64Attribute(value: 33))
+main.appendOp(rhs)
+main.appendOp(AddOp(lhs: lhs.results.first!, rhs: rhs.results.first!))
 
 main.print()
