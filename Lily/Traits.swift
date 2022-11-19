@@ -31,7 +31,7 @@ extension OneRegion {
 protocol OneArgument: Operation {
 }
 
-protocol FunctionLike: Operation {
+protocol FunctionLike: Operation, OneRegion {
   func getFunctionType() -> FunctionTy
   func getFunctionName() -> String
 }
