@@ -81,4 +81,60 @@ class Operation {
     Swift.print("")
     Swift.print("}")
   }
+
+  func verify() -> Bool {
+    for verifier in verifiers {
+      if !verifier() {
+        return false
+      }
+    }
+    return true
+  }
+  var verifiers: [() -> Bool] = []
+}
+
+func verify(op: Operation) -> Bool {
+  if op is OneResult {
+    if op.results.count != 1 {
+      return false
+    }
+  }
+  if op is OneTypedResult {
+    // This should probably be something else... is MLIR not typing all results?
+    if op.results.count != 1 {
+      return false
+    }
+  }
+  if op is OneRegion {
+    if op.regions.count != 1 {
+      return false
+    }
+  }
+  if op is OneArgument {
+    if op.operands.count != 1 {
+      return false
+    }
+  }
+
+  if op is Function {
+    let op = op as! Function
+    if op.getFunctionType().results.count != 0 {
+      let body = op.getBody()
+      let foundReturn = {
+        for bb in body.basicBlocks {
+          for op in bb.operations {
+            if op is ReturnOp {
+              return true
+            }
+          }
+        }
+        return false
+      }()
+      if !foundReturn {
+        return false
+      }
+    }
+  }
+
+  return op.verify()
 }
