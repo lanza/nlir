@@ -7,13 +7,23 @@
 
 import Foundation
 
-let main = Function(name: "main", type: FunctionTy())
+let main = Function(
+  name: "main", type: FunctionTy(arguments: [], results: [I64Ty.get()]))
 let bb = main.getBody().appendNewBasicBlock()
 
 let lhs = ConstantOp(value: I64Attribute(value: 44))
+assert(verify(op: lhs))
 main.appendOp(lhs)
 let rhs = ConstantOp(value: I64Attribute(value: 33))
+assert(verify(op: rhs))
 main.appendOp(rhs)
-main.appendOp(AddOp(lhs: lhs.results.first!, rhs: rhs.results.first!))
+let add = AddOp(lhs: lhs.results.first!, rhs: rhs.results.first!)
+assert(verify(op: add))
+main.appendOp(add)
+let ret = ReturnOp(value: add.getResult())
+assert(verify(op: ret))
+main.appendOp(ret)
+
+assert(verify(op: main))
 
 main.print()
