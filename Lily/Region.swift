@@ -13,8 +13,8 @@ class Region {
     self.basicBlocks = basicBlocks
   }
 
-  func appendNewBasicBlock() -> BasicBlock {
-    basicBlocks.append(BasicBlock())
+  func appendNewBasicBlock(args: [Ty] = []) -> BasicBlock {
+    basicBlocks.append(BasicBlock(argumentTypes: args))
     return basicBlocks.last!
   }
 }

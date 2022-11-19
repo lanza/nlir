@@ -14,9 +14,9 @@ class BasicBlock {
   var arguments: [Value]
   var operations: [Operation]
   init(
-    arguments: [Value] = [], operations: [Operation] = [], name: String? = nil
+    argumentTypes: [Ty] = [], operations: [Operation] = [], name: String? = nil
   ) {
-    self.arguments = arguments
+    self.arguments = []
     self.operations = operations
     if let name = name {
       self.name = "^\(name)"
@@ -24,5 +24,7 @@ class BasicBlock {
       self.name = "^bb\(nextBlockName)"
       nextBlockName += 1
     }
+
+    arguments = argumentTypes.map { BlockArgument(ty: $0, block: self) }
   }
 }

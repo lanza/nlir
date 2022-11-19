@@ -42,7 +42,7 @@ class ConstantOp: Operation, OneTypedResult {
     attributes["value"] = value
 
     results.append(
-      Value(ty: value.getTy(), definingOperation: self, name: name))
+      OpResult(ty: value.getTy(), op: self, name: name))
   }
 }
 
@@ -58,7 +58,7 @@ class AddOp: Operation, OneTypedResult {
 
     operands.append(lhs)
     operands.append(rhs)
-    results.append(Value(ty: lhs.getTy(), definingOperation: self))
+    results.append(OpResult(ty: lhs.getTy(), op: self))
   }
 }
 

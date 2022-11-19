@@ -9,7 +9,6 @@ import Foundation
 
 class Value {
   private let ty: Ty
-  let definingOperation: Operation
   let name: String
 
   func getTy() -> Ty {
@@ -18,9 +17,8 @@ class Value {
 
   static var nextDefaultName = 1
 
-  init(ty: Ty, definingOperation: Operation, name: String? = nil) {
+  init(ty: Ty, name: String? = nil) {
     self.ty = ty
-    self.definingOperation = definingOperation
 
     if let name = name {
       self.name = name
@@ -28,5 +26,21 @@ class Value {
       self.name = "val\(Value.nextDefaultName)"
       Value.nextDefaultName += 1
     }
+  }
+}
+
+class OpResult: Value {
+  let definingOperation: Operation
+  init(ty: Ty, op: Operation, name: String? = nil) {
+    self.definingOperation = op
+    super.init(ty: ty, name: name)
+  }
+}
+
+class BlockArgument: Value {
+  let owningBlock: BasicBlock
+  init(ty: Ty, block: BasicBlock, name: String? = nil) {
+    self.owningBlock = block
+    super.init(ty: ty, name: name)
   }
 }

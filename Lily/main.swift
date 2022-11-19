@@ -8,8 +8,10 @@
 import Foundation
 
 let main = Function(
-  name: "main", type: FunctionTy(arguments: [], results: [I64Ty.get()]))
-let bb = main.getBody().appendNewBasicBlock()
+  name: "main",
+  type: FunctionTy(arguments: [I64Ty.get()], results: [I64Ty.get()]))
+let bb = main.getBody().appendNewBasicBlock(
+  args: main.getFunctionType().arguments)
 
 let lhs = ConstantOp(value: I64Attribute(value: 44))
 assert(verify(op: lhs))

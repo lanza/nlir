@@ -139,7 +139,35 @@ func verify(op: Operation) -> Bool {
         return false
       }
     }
+
+    if op.getFunctionType().arguments.count != 0 {
+      if !verifyFunctionArguments(op) {
+        return false
+      }
+    }
   }
 
   return op.verify()
+}
+
+func verifyFunctionArguments(_ function: Function) -> Bool {
+  let entry = function.getRegion().basicBlocks[0]
+
+  let bbArgs = entry.arguments
+  let fnArgs = function.getFunctionType().arguments
+
+  if bbArgs.count != fnArgs.count {
+    return false
+  }
+
+  for (bbArg, fnArg) in zip(bbArgs, fnArgs) {
+    if bbArg.getTy() !== fnArg {
+      print(
+        "Verifying function: \(function.getName()) -- \(function.getFunctionName()) failed to match bbArg and fnArg"
+      )
+      return false
+    }
+  }
+
+  return true
 }
