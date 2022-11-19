@@ -201,6 +201,30 @@ class AddOp: Operation {
   }
 }
 
+class TypeAttribute: Attribute {
+  let ty: Ty
+  init(type: Ty) {
+    self.ty = type
+  }
+
+  override var debugDescription: String {
+    if ty is FunctionTy {
+      let ft = ty as! FunctionTy
+
+      let args =
+        "(\(ft.arguments.map { $0.debugDescription }.joined(separator: ", ")))"
+      let results =
+        "(\(ft.results.map { $0.debugDescription }.joined(separator: ", ")))"
+
+      return args + " -> " + results
+
+    } else {
+      fatalError("IDK")
+    }
+
+  }
+}
+
 class Attribute: CustomDebugStringConvertible {
   func getTy() -> Ty {
     fatalError("Can't use base attribute")
