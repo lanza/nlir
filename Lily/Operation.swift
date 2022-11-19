@@ -67,14 +67,19 @@ class Operation {
 
     Swift.print(" {")
 
-    let bb = regions[0].basicBlocks[0]
+    let region = regions[0]
 
-    for (index, operation) in bb.operations.enumerated() {
-      Swift.print("  ", terminator: "")
-      operation.print(terminator: "")
+    for bb in region.basicBlocks {
 
-      if index + 1 < bb.operations.count {
-        Swift.print("")
+      Swift.print(bb.name + ":")
+
+      for (index, operation) in bb.operations.enumerated() {
+        Swift.print("  ", terminator: "")
+        operation.print(terminator: "")
+
+        if index + 1 < bb.operations.count {
+          Swift.print("")
+        }
       }
     }
 
