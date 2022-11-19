@@ -15,6 +15,7 @@
 		B3AE679B29287BDD00B475E4 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AE679A29287BDD00B475E4 /* Value.swift */; };
 		B3AE679D29287BFD00B475E4 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AE679C29287BFD00B475E4 /* Operation.swift */; };
 		B3AE679F29287C1E00B475E4 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AE679E29287C1E00B475E4 /* Attributes.swift */; };
+		B3AE67A129287C4E00B475E4 /* BuiltinOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AE67A029287C4E00B475E4 /* BuiltinOps.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		B3AE679A29287BDD00B475E4 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		B3AE679C29287BFD00B475E4 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		B3AE679E29287C1E00B475E4 /* Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
+		B3AE67A029287C4E00B475E4 /* BuiltinOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltinOps.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				B367E23929260F15004DF26D /* main.swift */,
 				B3AE679E29287C1E00B475E4 /* Attributes.swift */,
+				B3AE67A029287C4E00B475E4 /* BuiltinOps.swift */,
 				B3AE67922928704A00B475E4 /* Traits.swift */,
 				B3AE679429287B5600B475E4 /* Types.swift */,
 				B3AE679629287B9400B475E4 /* Region.swift */,
@@ -147,6 +150,7 @@
 				B3AE679529287B5600B475E4 /* Types.swift in Sources */,
 				B3AE67932928704A00B475E4 /* Traits.swift in Sources */,
 				B367E23A29260F15004DF26D /* main.swift in Sources */,
+				B3AE67A129287C4E00B475E4 /* BuiltinOps.swift in Sources */,
 				B3AE679729287B9400B475E4 /* Region.swift in Sources */,
 				B3AE679B29287BDD00B475E4 /* Value.swift in Sources */,
 			);
