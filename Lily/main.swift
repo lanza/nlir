@@ -7,7 +7,11 @@
 
 import Foundation
 
-class Ty {
+class Ty: CustomDebugStringConvertible {
+  var debugDescription: String {
+    fatalError("IDK")
+  }
+}
 
 }
 
