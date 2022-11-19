@@ -171,7 +171,7 @@ class Function: Operation {
   }
 }
 
-class ConstantOp: Operation {
+class ConstantOp: Operation, OneTypedResult {
   override func getName() -> String {
     return "constant"
   }
@@ -185,7 +185,7 @@ class ConstantOp: Operation {
   }
 }
 
-class AddOp: Operation {
+class AddOp: Operation, OneTypedResult {
   override func getName() -> String {
     return "add"
   }
