@@ -158,10 +158,11 @@ class Function: Operation {
     return regions[0]
   }
 
-  init(name: String) {
+  init(name: String, type: FunctionTy) {
     super.init()
     self.regions.append(Region())
     self.attributes["functionName"] = StringAttribute(value: name)
+    self.attributes["functionType"] = TypeAttribute(type: type)
   }
 
   func appendOp(_ op: Operation) {
@@ -269,7 +270,7 @@ class StringAttribute: Attribute {
   }
 }
 
-let main = Function(name: "main")
+let main = Function(name: "main", type: FunctionTy())
 let bb = main.getBody().appendNewBasicBlock()
 
 let lhs = ConstantOp(value: I64Attribute(value: 44))
