@@ -31,15 +31,6 @@ class Value {
   }
 }
 
-class BasicBlock {
-  var arguments: [Value]
-  var operations: [Operation]
-  init(arguments: [Value] = [], operations: [Operation] = []) {
-    self.arguments = arguments
-    self.operations = operations
-  }
-}
-
 class Operation {
   func getName() -> String {
     fatalError("Can't use base Operation")
