@@ -61,3 +61,14 @@ class AddOp: Operation, OneTypedResult {
     results.append(Value(ty: lhs.getTy(), definingOperation: self))
   }
 }
+
+class ReturnOp: Operation, OneArgument {
+  override func getName() -> String {
+    return "return"
+  }
+
+  init(value: Value) {
+    super.init()
+    self.operands.append(value)
+  }
+}
