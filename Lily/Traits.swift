@@ -21,4 +21,9 @@ extension OneTypedResult {
   func getType() -> Ty { return results.first!.getTy() }
 }
 
+protocol OneRegion: Operation {
+  func getRegion() -> Region
+}
+extension OneRegion {
+  func getRegion() -> Region { regions.first! }
 }
