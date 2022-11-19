@@ -13,6 +13,13 @@ class Ty: CustomDebugStringConvertible {
   }
 }
 
+class FunctionTy: Ty {
+  let arguments: [Ty]
+  let results: [Ty]
+  init(arguments: [Ty] = [], results: [Ty] = []) {
+    self.arguments = arguments
+    self.results = results
+  }
 }
 
 class Value {
