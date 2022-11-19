@@ -12,9 +12,13 @@ class Ty {
 }
 
 class Value {
-  let ty: Ty
+  private let ty: Ty
   let definingOperation: Operation
   let name: String
+
+  func getTy() -> Ty {
+    return ty
+  }
 
   static var nextDefaultName = 1
 
@@ -178,11 +182,11 @@ class AddOp: Operation {
   init(lhs: Value, rhs: Value) {
     super.init()
 
-    assert(lhs.ty === rhs.ty)
+    assert(lhs.getTy() === rhs.getTy())
 
     operands.append(lhs)
     operands.append(rhs)
-    results.append(Value(ty: lhs.ty, definingOperation: self))
+    results.append(Value(ty: lhs.getTy(), definingOperation: self))
   }
 }
 
