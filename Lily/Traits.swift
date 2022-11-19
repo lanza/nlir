@@ -27,3 +27,7 @@ protocol OneRegion: Operation {
 extension OneRegion {
   func getRegion() -> Region { regions.first! }
 }
+
+protocol OneArgument: Operation {
+}
+
