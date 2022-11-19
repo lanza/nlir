@@ -77,7 +77,7 @@ class Operation {
         Swift.print("(", terminator: "")
         Swift.print(
           bb.arguments.enumerated().map {
-            return "%arg\($0.0): \($0.1.getTy())"
+            return "%\($0.1.name): \($0.1.getTy())"
           }.joined(separator: ", "), terminator: "")
         Swift.print(")", terminator: "")
       }

@@ -22,7 +22,10 @@ main.appendOp(rhs)
 let add = AddOp(lhs: lhs.results.first!, rhs: rhs.results.first!)
 assert(verify(op: add))
 main.appendOp(add)
-let ret = ReturnOp(value: add.getResult())
+
+let addAgain = AddOp(lhs: add.getResult(), rhs: bb.arguments.first!)
+main.appendOp(addAgain)
+let ret = ReturnOp(value: addAgain.getResult())
 assert(verify(op: ret))
 main.appendOp(ret)
 
