@@ -7,12 +7,8 @@
 
 import Foundation
 
-class Function: Operation {
+class Function: Operation, FunctionLike {
   var insertionPoint: (Int, Int) = (0, 0)
-
-  func getFunctionName() -> String {
-    return (attributes["functionName"] as! StringAttribute).value
-  }
 
   override func getName() -> String {
     return "func"
