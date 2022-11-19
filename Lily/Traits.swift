@@ -10,18 +10,15 @@ import Foundation
 protocol OneResult: Operation {
   func getResult() -> Value
 }
-
 extension OneResult {
-  func getResult() -> Value {
-    results.first!
-  }
+  func getResult() -> Value { results.first! }
 }
 
 protocol OneTypedResult: Operation {
   func getType() -> Ty
 }
 extension OneTypedResult {
-  func getType() -> Ty {
-    return results.first!.getTy()
-  }
+  func getType() -> Ty { return results.first!.getTy() }
+}
+
 }
