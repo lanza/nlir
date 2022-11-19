@@ -25,9 +25,11 @@ class FunctionTy: Ty {
 class I64Ty: Ty {
   static let this = I64Ty()
   static func get() -> I64Ty { return this }
+  override var debugDescription: String { "I64" }
 }
 
 class StringTy: Ty {
   static let this = StringTy()
   static func get() -> StringTy { return this }
+  override var debugDescription: String { "String" }
 }
