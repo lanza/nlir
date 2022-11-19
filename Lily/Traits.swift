@@ -14,7 +14,7 @@ extension OneResult {
   func getResult() -> Value { results.first! }
 }
 
-protocol OneTypedResult: Operation {
+protocol OneTypedResult: Operation, OneResult {
   func getType() -> Ty
 }
 extension OneTypedResult {
