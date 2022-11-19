@@ -31,3 +31,15 @@ extension OneRegion {
 protocol OneArgument: Operation {
 }
 
+protocol FunctionLike: Operation {
+  func getFunctionType() -> FunctionTy
+  func getFunctionName() -> String
+}
+extension FunctionLike {
+  func getFunctionType() -> FunctionTy {
+    return (attributes["functionType"] as! TypeAttribute).ty as! FunctionTy
+  }
+  func getFunctionName() -> String {
+    return (attributes["functionName"] as! StringAttribute).value
+  }
+}
