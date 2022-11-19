@@ -71,7 +71,17 @@ class Operation {
 
     for bb in region.basicBlocks {
 
-      Swift.print(bb.name + ":")
+      Swift.print(bb.name, terminator: "")
+
+      if bb.arguments.count != 0 {
+        Swift.print("(", terminator: "")
+        Swift.print(
+          bb.arguments.enumerated().map {
+            return "%arg\($0.0): \($0.1.getTy())"
+          }.joined(separator: ", "), terminator: "")
+        Swift.print(")", terminator: "")
+      }
+      Swift.print(":")
 
       for (index, operation) in bb.operations.enumerated() {
         Swift.print("  ", terminator: "")
