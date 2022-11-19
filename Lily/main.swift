@@ -31,18 +31,6 @@ class Value {
   }
 }
 
-class Region {
-  var basicBlocks: [BasicBlock]
-  init(basicBlocks: [BasicBlock] = []) {
-    self.basicBlocks = basicBlocks
-  }
-
-  func appendNewBasicBlock() -> BasicBlock {
-    basicBlocks.append(BasicBlock())
-    return basicBlocks.last!
-  }
-}
-
 class BasicBlock {
   var arguments: [Value]
   var operations: [Operation]
